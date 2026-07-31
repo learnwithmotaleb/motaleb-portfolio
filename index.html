@@ -165,6 +165,7 @@
 
   /* PIPELINE */
   .pipeline{ display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative; }
+  .pipeline.pipeline-3col{ grid-template-columns:repeat(3,1fr); }
   @media (max-width:820px){ .pipeline{ grid-template-columns:1fr; gap:28px; } }
   .pipe-step{ position:relative; padding:0 20px 0 0; }
   .pipe-step:not(:last-child)::after{
@@ -218,6 +219,7 @@
     <div class="navlinks">
       <a href="#work">Work</a>
       <a href="#stack">Stack</a>
+      <a href="#experience">Experience</a>
       <a href="#process">Process</a>
       <a href="#youtube">YouTube</a>
     </div>
@@ -230,15 +232,16 @@
     <div>
       <div class="eyebrow"><span class="dot"></span> Available for new projects</div>
       <h1>I build Flutter apps and <span class="accent">get them shipped.</span></h1>
-      <p class="lede">Mobile app developer at Devovate It, specializing in Flutter apps that make it through App Store and Play Store review — subscriptions, payments, and all. Firebase, RevenueCat, AdMob, GetX.</p>
+      <p class="lede">Flutter Developer with 4+ years of experience, specializing in App Store & Google Play publishing — including diagnosing and fixing rejection issues around metadata, privacy, guidelines, and binaries. End-to-end delivery: architecture, backend, RevenueCat/Stripe monetization, and store deployment.</p>
       <div class="hero-actions">
         <a href="#work" class="btn btn-primary">View shipped apps →</a>
         <a href="#contact" class="btn btn-ghost">Start a project</a>
+        <a href="https://youtu.be/l0AgSDBZ87M?si=FpCfdI015F9rCLzQ" class="btn btn-ghost" target="_blank" rel="noopener">▶ Watch intro</a>
       </div>
       <div class="hero-stats">
+        <div class="hstat"><b>4+</b><span>Years of experience</span></div>
         <div class="hstat"><b>4+</b><span>Apps live on stores</span></div>
         <div class="hstat"><b>2</b><span>Platforms, every build</span></div>
-        <div class="hstat"><b>0</b><span>Rejections left unresolved</span></div>
       </div>
     </div>
 
@@ -262,18 +265,49 @@
       <p>No trend-chasing — this is the stack I've shipped real, published apps with, repeatedly.</p>
     </div>
     <div class="stack-grid reveal">
-      <div class="stack-item"><div class="name">Flutter</div><div class="role">UI / cross-platform</div></div>
-      <div class="stack-item"><div class="name">Firebase</div><div class="role">backend / auth / db</div></div>
+      <div class="stack-item"><div class="name">Flutter / Dart</div><div class="role">UI / cross-platform</div></div>
+      <div class="stack-item"><div class="name">Firebase</div><div class="role">auth / firestore / FCM</div></div>
       <div class="stack-item"><div class="name">RevenueCat</div><div class="role">subscriptions</div></div>
+      <div class="stack-item"><div class="name">Stripe / Stripe Connect</div><div class="role">payments & payouts</div></div>
       <div class="stack-item"><div class="name">AdMob</div><div class="role">monetization</div></div>
-      <div class="stack-item"><div class="name">GetX</div><div class="role">state management</div></div>
+      <div class="stack-item"><div class="name">GetX / Bloc / Provider</div><div class="role">state management</div></div>
       <div class="stack-item"><div class="name">Dio</div><div class="role">networking</div></div>
       <div class="stack-item"><div class="name">GoRouter</div><div class="role">navigation</div></div>
       <div class="stack-item"><div class="name">GetIt</div><div class="role">dependency injection</div></div>
       <div class="stack-item"><div class="name">FastAPI</div><div class="role">custom backends</div></div>
+      <div class="stack-item"><div class="name">Socket.IO</div><div class="role">real-time chat</div></div>
+      <div class="stack-item"><div class="name">SQLite / Hive / Postgres</div><div class="role">local & server DB</div></div>
       <div class="stack-item"><div class="name">App Store Connect</div><div class="role">iOS release</div></div>
       <div class="stack-item"><div class="name">Play Console</div><div class="role">Android release</div></div>
-      <div class="stack-item"><div class="name">Socket.IO</div><div class="role">real-time chat</div></div>
+      <div class="stack-item"><div class="name">CI/CD</div><div class="role">build & deploy pipelines</div></div>
+      <div class="stack-item"><div class="name">Git / GitHub</div><div class="role">version control</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="tag">// EXPERIENCE</span>
+      <h2>Where this was built</h2>
+      <p>4+ years across agency work, freelance delivery, and my own YouTube channel.</p>
+    </div>
+    <div class="pipeline pipeline-3col">
+      <div class="pipe-step reveal">
+        <div class="pipe-num mono">'25</div>
+        <h3>Flutter Developer — SparkTech Agency</h3>
+        <p>Nov 2025 – Present · Dhaka. Developing and maintaining Flutter Android and iOS applications.</p>
+      </div>
+      <div class="pipe-step reveal">
+        <div class="pipe-num mono">'24</div>
+        <h3>Freelance — Learn With Motaleb</h3>
+        <p>2024 – Present · Remote. End-to-end client Flutter projects — architecture, RevenueCat, AdMob, store deployment. Shipped SiteNorm, Grambix, Bazarya/Ely74, Protippz. Runs the Learn With Motaleb YouTube channel.</p>
+      </div>
+      <div class="pipe-step reveal">
+        <div class="pipe-num mono">'24</div>
+        <h3>Jr. Flutter Developer — IT Way BD</h3>
+        <p>Jul 2024 – Nov 2024 · Uttara, Dhaka. Flutter Android and iOS app development.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -289,45 +323,66 @@
       <div class="proj-card reveal">
         <div class="proj-top">
           <div class="proj-icon" style="background:linear-gradient(135deg,#4C6FFF,#7c9bff);">G</div>
-          <span class="proj-version">v1.0.0 · Live</span>
+          <span class="proj-version">Live</span>
         </div>
         <h3>Grambix</h3>
-        <span class="cat">Consumer app</span>
-        <p>Full-cycle Flutter build from architecture to store release, with clean state management and a smooth onboarding flow.</p>
+        <span class="cat">eBooks & Audiobooks</span>
+        <p>Full-cycle Flutter build from architecture to store release, live on both Google Play and the App Store.</p>
         <div class="proj-tags"><span>Flutter</span><span>GetX</span><span>Firebase</span></div>
+        <div class="proj-tags" style="margin-top:10px;"><a href="https://github.com/learnwithmotaleb/grambix" target="_blank" rel="noopener" style="color:var(--indigo); font-family:'JetBrains Mono',monospace; font-size:12px;">github.com/learnwithmotaleb/grambix →</a></div>
       </div>
 
       <div class="proj-card reveal">
         <div class="proj-top">
           <div class="proj-icon" style="background:linear-gradient(135deg,#FFB454,#ffcd85);">S</div>
-          <span class="proj-version">v1.0.9 · Live</span>
+          <span class="proj-version">v1.1.2 · Live</span>
         </div>
         <h3>SiteNorm</h3>
         <span class="cat">Subscriptions & payments</span>
-        <p>End-to-end RevenueCat subscription infrastructure across iOS and Android — paywall, entitlements, and policy-compliant billing UI.</p>
+        <p>End-to-end RevenueCat subscription integration (monthly/yearly) with GetX, GoRouter, GetIt — multiple store rejections resolved and shipped live on both platforms.</p>
         <div class="proj-tags"><span>RevenueCat</span><span>Paywall</span><span>Compliance</span></div>
+        <div class="proj-tags" style="margin-top:10px;"><a href="https://github.com/learnwithmotaleb/sitenorm_motaleb" target="_blank" rel="noopener" style="color:var(--indigo); font-family:'JetBrains Mono',monospace; font-size:12px;">github.com/learnwithmotaleb/sitenorm_motaleb →</a></div>
       </div>
 
       <div class="proj-card reveal">
         <div class="proj-top">
           <div class="proj-icon" style="background:linear-gradient(135deg,#52D17A,#8fe3ab);">B</div>
-          <span class="proj-version">v1.x · Live</span>
+          <span class="proj-version">Live</span>
         </div>
         <h3>Bazarya / Ely74</h3>
         <span class="cat">Marketplace</span>
-        <p>Marketplace-style Flutter app with API-driven catalog, cart, and checkout flows built on Dio and a structured API client.</p>
+        <p>Marketplace-style Flutter app on Google Play with API-driven catalog, cart, and checkout flows built on Dio.</p>
         <div class="proj-tags"><span>Flutter</span><span>Dio</span><span>Marketplace</span></div>
       </div>
 
       <div class="proj-card reveal">
         <div class="proj-top">
           <div class="proj-icon" style="background:linear-gradient(135deg,#FF5F57,#ff9d99);">P</div>
-          <span class="proj-version">v1.x · Live</span>
+          <span class="proj-version">Live</span>
         </div>
         <h3>Protippz</h3>
         <span class="cat">Utility app</span>
         <p>Lightweight, focused utility app taken from concept through to a published store listing on schedule.</p>
         <div class="proj-tags"><span>Flutter</span><span>AdMob</span></div>
+      </div>
+    </div>
+
+    <div class="section-head reveal" style="margin-top:56px; margin-bottom:24px;">
+      <span class="tag">// IN PROGRESS</span>
+      <h2 style="font-size:22px;">Currently building</h2>
+    </div>
+    <div class="proj-grid">
+      <div class="proj-card reveal">
+        <h3 style="font-size:16px;">Bestkits</h3>
+        <span class="cat">Marketplace · Stripe Connect payouts</span>
+      </div>
+      <div class="proj-card reveal">
+        <h3 style="font-size:16px;">Westchester Courier App</h3>
+        <span class="cat">Logistics / courier</span>
+      </div>
+      <div class="proj-card reveal">
+        <h3 style="font-size:16px;">Jeebjab</h3>
+        <span class="cat">Flutter app development</span>
       </div>
     </div>
   </div>
@@ -392,13 +447,14 @@
         <a href="mailto:lwmsoftltd@gmail.com" class="btn btn-primary">Email me</a>
         <a href="https://www.upwork.com/freelancers/~012953b7fd8ca14a34" class="btn btn-ghost" target="_blank" rel="noopener">Message on Upwork</a>
       </div>
+      <p style="margin-top:26px; font-size:13px; color:var(--muted);" class="mono">+880 1701 577479 · Uttara, Dhaka-1230, Bangladesh</p>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <div>© 2026 Abdul Motaleb ·learnwithmotaleb</div>
+    <div>© 2026 Abdul Motaleb · Learn With Motaleb</div>
     <div style="display:flex; gap:22px;">
       <a href="https://github.com/learnwithmotaleb" target="_blank" rel="noopener">GitHub</a>
       <a href="https://www.linkedin.com/in/learnwithmtoaelb" target="_blank" rel="noopener">LinkedIn</a>
