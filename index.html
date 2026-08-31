@@ -4,512 +4,1108 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Abdul Motaleb — Flutter Mobile App Developer</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
-  :root{
-    --ink:#0B0E14;
-    --panel:#12161F;
-    --panel-2:#171C27;
-    --line:#232938;
-    --text:#E8EAF0;
-    --muted:#8891A7;
-    --indigo:#4C6FFF;
-    --indigo-dim:#3A53C4;
-    --amber:#FFB454;
-    --green:#52D17A;
-    --radius:14px;
+:root{
+  --ink:#0B0E14;
+  --panel:#12161F;
+  --panel-2:#171C27;
+  --line:#232938;
+  --text:#E8EAF0;
+  --muted:#8891A7;
+  --indigo:#4C6FFF;
+  --indigo-dim:#3A53C4;
+  --amber:#FFB454;
+  --green:#52D17A;
+  --radius:14px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+
+html{scroll-behavior:smooth;}
+
+body{
+  background:var(--ink);
+  color:var(--text);
+  font-family:'Inter',sans-serif;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+h1,h2,h3,.display{
+  font-family:'Space Grotesk',sans-serif;
+  letter-spacing:-0.01em;
+}
+
+.mono{font-family:'JetBrains Mono',monospace;}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+::selection{
+  background:var(--indigo);
+  color:#fff;
+}
+
+.wrap{
+  max-width:1140px;
+  margin:0 auto;
+  padding:0 28px;
+}
+
+/* NAV */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(11,14,20,0.82);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+
+nav.wrap{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding-top:18px;
+  padding-bottom:18px;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:600;
+}
+
+.logo-mark{
+  width:28px;
+  height:28px;
+  border-radius:8px;
+  background:linear-gradient(135deg,var(--indigo),#7c9bff);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'JetBrains Mono',monospace;
+  font-size:13px;
+  font-weight:600;
+  color:#0B0E14;
+}
+
+.navlinks{
+  display:flex;
+  gap:32px;
+  font-size:14px;
+  color:var(--muted);
+}
+
+.navlinks a:hover{
+  color:var(--text);
+}
+
+.nav-cta{
+  font-size:13px;
+  font-family:'JetBrains Mono',monospace;
+  color:var(--indigo);
+  border:1px solid var(--indigo-dim);
+  padding:8px 16px;
+  border-radius:8px;
+}
+
+.nav-cta:hover{
+  background:var(--indigo);
+  color:#fff;
+}
+
+/* HERO */
+
+.hero{
+  padding:88px 0 70px;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:56px;
+  align-items:center;
+}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:12.5px;
+  color:var(--green);
+  background:rgba(82,209,122,.08);
+  border:1px solid rgba(82,209,122,.25);
+  padding:6px 12px;
+  border-radius:100px;
+  margin-bottom:22px;
+}
+
+.eyebrow .dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--green);
+}
+
+.hero h1{
+  font-size:clamp(34px,4.6vw,54px);
+  font-weight:600;
+  line-height:1.08;
+  margin-bottom:20px;
+}
+
+.hero h1 .accent{
+  color:var(--indigo);
+}
+
+.hero p.lede{
+  font-size:17px;
+  color:var(--muted);
+  max-width:52ch;
+  margin-bottom:32px;
+}
+
+.hero-actions{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-bottom:38px;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:13px 22px;
+  border-radius:10px;
+  font-size:14.5px;
+  font-weight:500;
+}
+
+.btn-primary{
+  background:var(--indigo);
+  color:#fff;
+}
+
+.btn-ghost{
+  border:1px solid var(--line);
+}
+
+.hero-stats{
+  display:flex;
+  gap:32px;
+  flex-wrap:wrap;
+}
+
+.hstat b{
+  display:block;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:24px;
+}
+
+.hstat span{
+  font-size:12.5px;
+  color:var(--muted);
+}
+
+/* TERMINAL */
+
+.terminal{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:0 30px 60px -20px rgba(0,0,0,.6);
+}
+
+.term-bar{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:12px 16px;
+  border-bottom:1px solid var(--line);
+  background:var(--panel-2);
+}
+
+.term-dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+}
+
+.term-title{
+  margin-left:8px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+  color:var(--muted);
+}
+
+.term-body{
+  padding:20px 20px 24px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:13px;
+  min-height:300px;
+}
+
+.term-line{
+  display:flex;
+  gap:8px;
+  margin-bottom:9px;
+  opacity:0;
+  animation:fadeIn .4s ease forwards;
+}
+
+.term-prompt{color:var(--indigo);}
+.term-ok{color:var(--green);}
+.term-dim{color:var(--muted);}
+.term-amber{color:var(--amber);}
+
+.cursor{
+  display:inline-block;
+  width:7px;
+  height:14px;
+  background:var(--indigo);
+  animation:blink 1s step-end infinite;
+}
+
+@keyframes blink{
+  50%{opacity:0;}
+}
+
+@keyframes fadeIn{
+  to{opacity:1;}
+}
+
+/* SHARED */
+
+section{
+  padding:88px 0;
+  border-top:1px solid var(--line);
+  scroll-margin-top:84px;
+}
+
+.section-head{
+  margin-bottom:48px;
+  max-width:640px;
+}
+
+.section-head .tag{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12.5px;
+  color:var(--indigo);
+  margin-bottom:12px;
+  display:block;
+}
+
+.section-head h2{
+  font-size:clamp(26px,3vw,36px);
+  font-weight:600;
+  margin-bottom:14px;
+}
+
+.section-head p{
+  color:var(--muted);
+}
+
+/* STACK */
+
+.stack-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  gap:12px;
+}
+
+.stack-item{
+  border:1px solid var(--line);
+  background:var(--panel);
+  border-radius:10px;
+  padding:16px 18px;
+}
+
+.stack-item .name{
+  font-weight:600;
+  font-size:14.5px;
+}
+
+.stack-item .role{
+  font-size:12px;
+  color:var(--muted);
+  font-family:'JetBrains Mono',monospace;
+}
+
+/* PROJECTS */
+
+.proj-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+}
+
+.proj-card{
+  border:1px solid var(--line);
+  background:var(--panel);
+  border-radius:var(--radius);
+  padding:26px;
+}
+
+.proj-card:hover{
+  border-color:var(--indigo-dim);
+  transform:translateY(-4px);
+}
+
+.proj-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:14px;
+}
+
+.proj-icon{
+  width:46px;
+  height:46px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:600;
+  font-size:17px;
+  color:#0B0E14;
+}
+
+.proj-version{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:var(--muted);
+  border:1px solid var(--line);
+  padding:4px 9px;
+  border-radius:100px;
+}
+
+.proj-card h3{
+  font-size:18px;
+  margin-bottom:6px;
+}
+
+.proj-card .cat{
+  font-size:12.5px;
+  color:var(--indigo);
+  font-family:'JetBrains Mono',monospace;
+  margin-bottom:12px;
+  display:block;
+}
+
+.proj-card p{
+  color:var(--muted);
+  font-size:14px;
+  margin-bottom:16px;
+}
+
+.proj-tags{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+}
+
+.proj-tags span{
+  font-size:11.5px;
+  background:var(--panel-2);
+  border:1px solid var(--line);
+  padding:4px 9px;
+  border-radius:6px;
+  color:var(--muted);
+}
+
+/* EXPERIENCE */
+
+.pipeline{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:25px;
+}
+
+.pipe-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+  color:var(--indigo);
+  width:44px;
+  height:44px;
+  border:1px solid var(--indigo-dim);
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:18px;
+}
+
+.pipe-step h3{
+  font-size:16.5px;
+  margin-bottom:8px;
+}
+
+.pipe-step p{
+  font-size:14px;
+  color:var(--muted);
+}
+
+/* CONTACT */
+
+.contact-box{
+  background:linear-gradient(135deg,var(--panel),var(--panel-2));
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:56px;
+  text-align:center;
+}
+
+.contact-box h2{
+  font-size:36px;
+  margin-bottom:14px;
+}
+
+.contact-box p{
+  color:var(--muted);
+  margin-bottom:30px;
+}
+
+.contact-actions{
+  display:flex;
+  gap:14px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+footer{
+  border-top:1px solid var(--line);
+  padding:32px 0;
+}
+
+footer .wrap{
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:12px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+  .hero-grid{
+    grid-template-columns:1fr;
   }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--ink);
-    color:var(--text);
-    font-family:'Inter',sans-serif;
-    line-height:1.6;
-    overflow-x:hidden;
-  }
-  h1,h2,h3,.display{ font-family:'Space Grotesk',sans-serif; letter-spacing:-0.01em;}
-  .mono{font-family:'JetBrains Mono',monospace;}
-  a{color:inherit; text-decoration:none;}
-  img{max-width:100%; display:block;}
+}
 
-  ::selection{ background:var(--indigo); color:#fff; }
-
-  :focus-visible{ outline:2px solid var(--amber); outline-offset:3px; }
-
-  @media (prefers-reduced-motion: reduce){
-    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
+@media(max-width:760px){
+  .proj-grid,
+  .pipeline{
+    grid-template-columns:1fr;
   }
 
-  .wrap{ max-width:1140px; margin:0 auto; padding:0 28px; }
-
-  /* NAV */
-  header{
-    position:sticky; top:0; z-index:50;
-    background:rgba(11,14,20,0.82);
-    backdrop-filter: blur(10px);
-    border-bottom:1px solid var(--line);
+  .navlinks{
+    display:none;
   }
-  nav.wrap{ display:flex; align-items:center; justify-content:space-between; padding-top:18px; padding-bottom:18px; }
-  .logo{ display:flex; align-items:center; gap:10px; font-weight:600; font-size:16px; }
-  .logo-mark{ width:28px; height:28px; border-radius:8px; background:linear-gradient(135deg, var(--indigo), #7c9bff); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:600; color:#0B0E14; flex-shrink:0; }
-  .navlinks{ display:flex; gap:32px; font-size:14px; color:var(--muted); }
-  .navlinks a{ transition:color .2s; }
-  .navlinks a:hover{ color:var(--text); }
-  .nav-cta{
-    font-size:13px; font-family:'JetBrains Mono',monospace; color:var(--indigo);
-    border:1px solid var(--indigo-dim); padding:8px 16px; border-radius:8px;
-    transition: background .2s, color .2s;
-  }
-  .nav-cta:hover{ background:var(--indigo); color:#fff; }
-  .menu-btn{ display:none; background:none; border:none; color:var(--text); font-size:22px; cursor:pointer; }
-
-  @media (max-width:820px){
-    .navlinks{ display:none; }
-    .nav-cta{ display:none; }
-    .menu-btn{ display:block; }
-  }
-
-  /* HERO */
-  .hero{ padding:88px 0 70px; position:relative; }
-  .hero-grid{ display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center; }
-  @media (max-width:900px){ .hero-grid{ grid-template-columns:1fr; gap:44px; } }
-
-  .eyebrow{
-    display:inline-flex; align-items:center; gap:8px;
-    font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--green);
-    background:rgba(82,209,122,0.08); border:1px solid rgba(82,209,122,0.25);
-    padding:6px 12px; border-radius:100px; margin-bottom:22px;
-  }
-  .eyebrow .dot{ width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 0 3px rgba(82,209,122,0.18); animation:pulse 2s infinite; }
-  @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.4;} }
-
-  .hero h1{ font-size:clamp(34px, 4.6vw, 54px); font-weight:600; line-height:1.08; margin-bottom:20px; }
-  .hero h1 .accent{ color:var(--indigo); }
-  .hero p.lede{ font-size:17px; color:var(--muted); max-width:52ch; margin-bottom:32px; }
-
-  .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:38px; }
-  .btn{
-    display:inline-flex; align-items:center; gap:8px;
-    padding:13px 22px; border-radius:10px; font-size:14.5px; font-weight:500;
-    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
-  }
-  .btn-primary{ background:var(--indigo); color:#fff; }
-  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 8px 22px rgba(76,111,255,0.35); }
-  .btn-ghost{ border:1px solid var(--line); color:var(--text); }
-  .btn-ghost:hover{ border-color:var(--indigo-dim); background:var(--panel); }
-
-  .hero-stats{ display:flex; gap:32px; flex-wrap:wrap; }
-  .hstat b{ display:block; font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:600; }
-  .hstat span{ font-size:12.5px; color:var(--muted); }
-
-  /* TERMINAL */
-  .terminal{
-    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
-    overflow:hidden; box-shadow:0 30px 60px -20px rgba(0,0,0,0.6);
-  }
-  .term-bar{
-    display:flex; align-items:center; gap:8px; padding:12px 16px;
-    border-bottom:1px solid var(--line); background:var(--panel-2);
-  }
-  .term-dot{ width:10px; height:10px; border-radius:50%; }
-  .term-title{ margin-left:8px; font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--muted); }
-  .term-body{ padding:20px 20px 24px; font-family:'JetBrains Mono',monospace; font-size:13px; min-height:280px; }
-  .term-line{ display:flex; gap:8px; margin-bottom:9px; opacity:0; animation:fadeIn .4s ease forwards; }
-  .term-prompt{ color:var(--indigo); flex-shrink:0; }
-  .term-ok{ color:var(--green); }
-  .term-dim{ color:var(--muted); }
-  .term-amber{ color:var(--amber); }
-  .cursor{ display:inline-block; width:7px; height:14px; background:var(--indigo); animation:blink 1s step-end infinite; vertical-align:middle; }
-  @keyframes blink{ 50%{ opacity:0; } }
-  @keyframes fadeIn{ to{ opacity:1; } }
-
-  /* SECTION SHARED */
-  section{ padding:88px 0; border-top:1px solid var(--line); scroll-margin-top:84px; }
-  .section-head{ margin-bottom:48px; max-width:640px; }
-  .section-head .tag{ font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--indigo); margin-bottom:12px; display:block; }
-  .section-head h2{ font-size:clamp(26px,3vw,36px); font-weight:600; margin-bottom:14px; }
-  .section-head p{ color:var(--muted); font-size:15.5px; }
-
-  /* STACK */
-  .stack-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px; }
-  .stack-item{
-    border:1px solid var(--line); background:var(--panel); border-radius:10px;
-    padding:16px 18px; transition: border-color .2s, transform .2s;
-  }
-  .stack-item:hover{ border-color:var(--indigo-dim); transform:translateY(-3px); }
-  .stack-item .name{ font-weight:600; font-size:14.5px; margin-bottom:3px; }
-  .stack-item .role{ font-size:12px; color:var(--muted); font-family:'JetBrains Mono',monospace; }
-
-  /* PROJECTS */
-  .proj-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
-  @media (max-width:760px){ .proj-grid{ grid-template-columns:1fr; } }
-  .proj-card{
-    border:1px solid var(--line); background:var(--panel); border-radius:var(--radius);
-    padding:26px; transition: border-color .2s, transform .2s;
-  }
-  .proj-card:hover{ border-color:var(--indigo-dim); transform:translateY(-4px); }
-  .proj-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:14px; }
-  .proj-icon{
-    width:46px; height:46px; border-radius:12px; flex-shrink:0;
-    display:flex; align-items:center; justify-content:center;
-    font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:17px; color:#0B0E14;
-  }
-  .proj-version{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); border:1px solid var(--line); padding:4px 9px; border-radius:100px; white-space:nowrap; }
-  .proj-card h3{ font-size:18px; font-weight:600; margin-bottom:6px; }
-  .proj-card .cat{ font-size:12.5px; color:var(--indigo); font-family:'JetBrains Mono',monospace; margin-bottom:12px; display:block; }
-  .proj-card p{ color:var(--muted); font-size:14px; margin-bottom:16px; }
-  .proj-tags{ display:flex; gap:7px; flex-wrap:wrap; }
-  .proj-tags span{ font-size:11.5px; background:var(--panel-2); border:1px solid var(--line); padding:4px 9px; border-radius:6px; color:var(--muted); }
-
-  /* PIPELINE */
-  .pipeline{ display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative; }
-  .pipeline.pipeline-3col{ grid-template-columns:repeat(3,1fr); }
-  @media (max-width:820px){ .pipeline{ grid-template-columns:1fr; gap:28px; } }
-  .pipe-step{ position:relative; padding:0 20px 0 0; }
-  .pipe-step:not(:last-child)::after{
-    content:''; position:absolute; top:22px; left:calc(100% - 10px); width:calc(100% - 20px); height:1px;
-    background:var(--line);
-  }
-  @media (max-width:820px){ .pipe-step::after{ display:none; } }
-  .pipe-num{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--indigo); width:44px; height:44px; border:1px solid var(--indigo-dim); border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:18px; background:var(--panel); }
-  .pipe-step h3{ font-size:16.5px; margin-bottom:8px; font-weight:600; }
-  .pipe-step p{ font-size:14px; color:var(--muted); }
-
-  /* YOUTUBE STRIP */
-  .yt-strip{
-    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
-    padding:40px; display:grid; grid-template-columns:1fr 1.1fr; gap:36px; align-items:center;
-  }
-  @media (max-width:760px){ .yt-strip{ grid-template-columns:1fr; padding:28px; } }
-  .yt-left{ display:flex; flex-direction:column; align-items:flex-start; gap:16px; }
-  .yt-icon{ width:52px; height:52px; border-radius:12px; background:rgba(255,80,80,0.1); border:1px solid rgba(255,80,80,0.25); display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; }
-  .yt-left h3{ font-size:19px; margin-bottom:6px; }
-  .yt-left p{ font-size:14.5px; color:var(--muted); line-height:1.65; }
-  .yt-video{
-    position:relative; width:100%; padding-top:56.25%; border-radius:12px; overflow:hidden;
-    border:1px solid var(--line); background:#000;
-  }
-  .yt-video iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
-
-  /* CONTACT */
-  .contact-box{
-    background:linear-gradient(135deg, var(--panel), var(--panel-2));
-    border:1px solid var(--line); border-radius:20px; padding:56px; text-align:center;
-  }
-  .contact-box h2{ font-size:clamp(26px,3.4vw,38px); margin-bottom:14px; }
-  .contact-box p{ color:var(--muted); max-width:46ch; margin:0 auto 30px; }
-  .contact-actions{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
-
-  footer{ border-top:1px solid var(--line); padding:32px 0; }
-  footer .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-size:13px; color:var(--muted); }
-  footer a{ color:var(--muted); transition:color .2s; }
-  footer a:hover{ color:var(--text); }
-
-  .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
-  .reveal.in{ opacity:1; transform:translateY(0); }
+}
 </style>
 </head>
+
 <body>
 
 <header>
-  <nav class="wrap">
-    <div class="logo"><div class="logo-mark">AM</div>Abdul Motaleb</div>
-    <div class="navlinks">
-      <a href="#work">Work</a>
-      <a href="#stack">Stack</a>
-      <a href="#experience">Experience</a>
-      <a href="#process">Process</a>
-      <a href="#youtube">YouTube</a>
-    </div>
-    <a href="#contact" class="nav-cta">$ hire --me</a>
-  </nav>
+<nav class="wrap">
+
+<div class="logo">
+<div class="logo-mark">AM</div>
+Abdul Motaleb
+</div>
+
+<div class="navlinks">
+<a href="#work">Work</a>
+<a href="#stack">Stack</a>
+<a href="#experience">Experience</a>
+</div>
+
+<a href="#contact" class="nav-cta">$ hire --me</a>
+
+</nav>
 </header>
 
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <div class="eyebrow"><span class="dot"></span> Available for new projects</div>
-      <h1>I build Flutter apps and <span class="accent">get them shipped.</span></h1>
-      <p class="lede">Flutter Developer with 4+ years of experience, specializing in App Store & Google Play publishing — including diagnosing and fixing rejection issues around metadata, privacy, guidelines, and binaries. End-to-end delivery: architecture, backend, RevenueCat/Stripe monetization, and store deployment.</p>
-      <div class="hero-actions">
-        <a href="#work" class="btn btn-primary">View shipped apps →</a>
-        <a href="#contact" class="btn btn-ghost">Start a project</a>
-        <a href="https://youtu.be/l0AgSDBZ87M?si=FpCfdI015F9rCLzQ" class="btn btn-ghost" target="_blank" rel="noopener">▶ Watch intro</a>
-      </div>
-      <div class="hero-stats">
-        <div class="hstat"><b>15+</b><span>Play Store projects</span></div>
-        <div class="hstat"><b>8+</b><span>App Store projects</span></div>
-        <div class="hstat"><b>4+</b><span>Years of experience</span></div>
-      </div>
-    </div>
 
-    <div class="terminal">
-      <div class="term-bar">
-        <div class="term-dot" style="background:#FF5F57;"></div>
-        <div class="term-dot" style="background:#FEBC2E;"></div>
-        <div class="term-dot" style="background:#28C840;"></div>
-        <div class="term-title">learnwithmotaleb — flutter build</div>
-      </div>
-      <div class="term-body" id="termBody"></div>
-    </div>
-  </div>
+<!-- HERO -->
+
+<section class="hero">
+<div class="wrap hero-grid">
+
+<div>
+
+<div class="eyebrow">
+<span class="dot"></span>
+Available for new projects
+</div>
+
+<h1>
+I build Flutter apps and
+<span class="accent">get them shipped.</span>
+</h1>
+
+<p class="lede">
+Flutter Developer with 4+ years of experience, specializing in App Store & Google Play publishing — including diagnosing and fixing rejection issues around metadata, privacy, guidelines, and binaries. End-to-end delivery: architecture, backend, RevenueCat/Stripe monetization, and store deployment.
+</p>
+
+<div class="hero-actions">
+<a href="#work" class="btn btn-primary">View shipped apps →</a>
+<a href="#contact" class="btn btn-ghost">Start a project</a>
+</div>
+
+<div class="hero-stats">
+
+<div class="hstat">
+<b>15+</b>
+<span>Play Store projects</span>
+</div>
+
+<div class="hstat">
+<b>8+</b>
+<span>App Store projects</span>
+</div>
+
+<div class="hstat">
+<b>4+</b>
+<span>Years of experience</span>
+</div>
+
+</div>
+</div>
+
+
+<!-- TERMINAL -->
+
+<div class="terminal">
+
+<div class="term-bar">
+<div class="term-dot" style="background:#FF5F57;"></div>
+<div class="term-dot" style="background:#FEBC2E;"></div>
+<div class="term-dot" style="background:#28C840;"></div>
+<div class="term-title">learnwithmotaleb — flutter build</div>
+</div>
+
+<div class="term-body" id="termBody"></div>
+
+</div>
+
+</div>
 </section>
+
+
+<!-- STACK -->
 
 <section id="stack">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="tag">// STACK</span>
-      <h2>What's actually running under the hood</h2>
-      <p>No trend-chasing — this is the stack I've shipped real, published apps with, repeatedly.</p>
-    </div>
-    <div class="stack-grid reveal">
-      <div class="stack-item"><div class="name">Flutter / Dart</div><div class="role">UI / cross-platform</div></div>
-      <div class="stack-item"><div class="name">Firebase</div><div class="role">auth / firestore / FCM</div></div>
-      <div class="stack-item"><div class="name">RevenueCat</div><div class="role">subscriptions</div></div>
-      <div class="stack-item"><div class="name">Stripe / Stripe Connect</div><div class="role">payments & payouts</div></div>
-      <div class="stack-item"><div class="name">AdMob</div><div class="role">monetization</div></div>
-      <div class="stack-item"><div class="name">GetX / Bloc / Provider</div><div class="role">state management</div></div>
-      <div class="stack-item"><div class="name">Dio</div><div class="role">networking</div></div>
-      <div class="stack-item"><div class="name">GoRouter</div><div class="role">navigation</div></div>
-      <div class="stack-item"><div class="name">GetIt</div><div class="role">dependency injection</div></div>
-      <div class="stack-item"><div class="name">FastAPI</div><div class="role">custom backends</div></div>
-      <div class="stack-item"><div class="name">Socket.IO</div><div class="role">real-time chat</div></div>
-      <div class="stack-item"><div class="name">SQLite / Hive / Postgres</div><div class="role">local & server DB</div></div>
-      <div class="stack-item"><div class="name">App Store Connect</div><div class="role">iOS release</div></div>
-      <div class="stack-item"><div class="name">Play Console</div><div class="role">Android release</div></div>
-      <div class="stack-item"><div class="name">CI/CD</div><div class="role">build & deploy pipelines</div></div>
-      <div class="stack-item"><div class="name">Git / GitHub</div><div class="role">version control</div></div>
-    </div>
-  </div>
+<div class="wrap">
+
+<div class="section-head">
+<span class="tag">// STACK</span>
+<h2>What's actually running under the hood</h2>
+<p>
+No trend-chasing — this is the stack I've shipped real, published apps with.
+</p>
+</div>
+
+<div class="stack-grid">
+
+<div class="stack-item">
+<div class="name">Flutter / Dart</div>
+<div class="role">cross-platform</div>
+</div>
+
+<div class="stack-item">
+<div class="name">Firebase</div>
+<div class="role">auth / firestore / FCM</div>
+</div>
+
+<div class="stack-item">
+<div class="name">RevenueCat</div>
+<div class="role">subscriptions</div>
+</div>
+
+<div class="stack-item">
+<div class="name">Stripe / Stripe Connect</div>
+<div class="role">payments & payouts</div>
+</div>
+
+<div class="stack-item">
+<div class="name">GetX / Bloc / Provider</div>
+<div class="role">state management</div>
+</div>
+
+<div class="stack-item">
+<div class="name">Dio</div>
+<div class="role">REST API</div>
+</div>
+
+<div class="stack-item">
+<div class="name">Google Maps</div>
+<div class="role">location & routing</div>
+</div>
+
+<div class="stack-item">
+<div class="name">FastAPI</div>
+<div class="role">backend</div>
+</div>
+
+<div class="stack-item">
+<div class="name">Socket.IO</div>
+<div class="role">real-time</div>
+</div>
+
+<div class="stack-item">
+<div class="name">App Store Connect</div>
+<div class="role">iOS publishing</div>
+</div>
+
+<div class="stack-item">
+<div class="name">Play Console</div>
+<div class="role">Android publishing</div>
+</div>
+
+<div class="stack-item">
+<div class="name">Git / GitHub</div>
+<div class="role">version control</div>
+</div>
+
+</div>
+</div>
 </section>
+
+
+<!-- EXPERIENCE -->
 
 <section id="experience">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="tag">// EXPERIENCE</span>
-      <h2>Where this was built</h2>
-      <p>4+ years across agency work, freelance delivery, and my own YouTube channel.</p>
-    </div>
-    <div class="pipeline pipeline-3col">
-      <div class="pipe-step reveal">
-        <div class="pipe-num mono">'25</div>
-        <h3>Flutter Developer — SparkTech Agency</h3>
-        <p>Nov 2025 – Present · Dhaka. Developing and maintaining Flutter Android and iOS applications.</p>
-      </div>
-      <div class="pipe-step reveal">
-        <div class="pipe-num mono">'24</div>
-        <h3>Freelance — Learn With Motaleb</h3>
-        <p>2024 – Present · Remote. End-to-end client Flutter projects — architecture, RevenueCat, AdMob, store deployment. Shipped SiteNorm, Grambix, Bazarya/Ely74, Protippz. Runs the Learn With Motaleb YouTube channel.</p>
-      </div>
-      <div class="pipe-step reveal">
-        <div class="pipe-num mono">'24</div>
-        <h3>Jr. Flutter Developer — IT Way BD</h3>
-        <p>Jul 2024 – Nov 2024 · Uttara, Dhaka. Flutter Android and iOS app development.</p>
-      </div>
-    </div>
-  </div>
+<div class="wrap">
+
+<div class="section-head">
+<span class="tag">// EXPERIENCE</span>
+<h2>Where this was built</h2>
+<p>Agency work, freelance delivery, and production mobile applications.</p>
+</div>
+
+<div class="pipeline">
+
+<div class="pipe-step">
+<div class="pipe-num">'25</div>
+<h3>Flutter Developer — SparkTech Agency</h3>
+<p>
+Nov 2025 – Present · Dhaka. Developing and maintaining Flutter Android and iOS applications.
+</p>
+</div>
+
+<div class="pipe-step">
+<div class="pipe-num">'24</div>
+<h3>Freelance — Learn With Motaleb</h3>
+<p>
+2024 – Present · Remote. End-to-end Flutter projects, RevenueCat, Firebase, AdMob, APIs and store deployment.
+</p>
+</div>
+
+<div class="pipe-step">
+<div class="pipe-num">'24</div>
+<h3>Jr. Flutter Developer — IT Way BD</h3>
+<p>
+Jul 2024 – Nov 2024 · Uttara, Dhaka. Flutter Android and iOS application development.
+</p>
+</div>
+
+</div>
+</div>
 </section>
+
+
+<!-- PROJECTS -->
 
 <section id="work">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="tag">// SHIPPED</span>
-      <h2>Apps in production, not just in a repo</h2>
-      <p>Each one went through real store review — subscriptions, ad policies, and metadata included.</p>
-    </div>
-    <div class="proj-grid">
-      <div class="proj-card reveal">
-        <div class="proj-top">
-          <div class="proj-icon" style="background:linear-gradient(135deg,#4C6FFF,#7c9bff);">G</div>
-          <span class="proj-version">Live</span>
-        </div>
-        <h3>Grambix</h3>
-        <span class="cat">eBooks & Audiobooks</span>
-        <p>Full-cycle Flutter build from architecture to store release, live on both Google Play and the App Store.</p>
-        <div class="proj-tags"><span>Flutter</span><span>GetX</span><span>Firebase</span></div>
-        <div class="proj-tags" style="margin-top:10px;"><a href="https://github.com/learnwithmotaleb/grambix" target="_blank" rel="noopener" style="color:var(--indigo); font-family:'JetBrains Mono',monospace; font-size:12px;">github.com/learnwithmotaleb/grambix →</a></div>
-      </div>
+<div class="wrap">
 
-      <div class="proj-card reveal">
-        <div class="proj-top">
-          <div class="proj-icon" style="background:linear-gradient(135deg,#FFB454,#ffcd85);">S</div>
-          <span class="proj-version">v1.1.2 · Live</span>
-        </div>
-        <h3>SiteNorm</h3>
-        <span class="cat">Subscriptions & payments</span>
-        <p>End-to-end RevenueCat subscription integration (monthly/yearly) with GetX, GoRouter, GetIt — multiple store rejections resolved and shipped live on both platforms.</p>
-        <div class="proj-tags"><span>RevenueCat</span><span>Paywall</span><span>Compliance</span></div>
-        <div class="proj-tags" style="margin-top:10px;"><a href="https://github.com/learnwithmotaleb/sitenorm_motaleb" target="_blank" rel="noopener" style="color:var(--indigo); font-family:'JetBrains Mono',monospace; font-size:12px;">github.com/learnwithmotaleb/sitenorm_motaleb →</a></div>
-      </div>
+<div class="section-head">
 
-      <div class="proj-card reveal">
-        <div class="proj-top">
-          <div class="proj-icon" style="background:linear-gradient(135deg,#52D17A,#8fe3ab);">B</div>
-          <span class="proj-version">Live</span>
-        </div>
-        <h3>Bazarya / Ely74</h3>
-        <span class="cat">Marketplace</span>
-        <p>Marketplace-style Flutter app on Google Play with API-driven catalog, cart, and checkout flows built on Dio.</p>
-        <div class="proj-tags"><span>Flutter</span><span>Dio</span><span>Marketplace</span></div>
-      </div>
+<span class="tag">// SHIPPED</span>
 
-      <div class="proj-card reveal">
-        <div class="proj-top">
-          <div class="proj-icon" style="background:linear-gradient(135deg,#FF5F57,#ff9d99);">P</div>
-          <span class="proj-version">Live</span>
-        </div>
-        <h3>Protippz</h3>
-        <span class="cat">Utility app</span>
-        <p>Lightweight, focused utility app taken from concept through to a published store listing on schedule.</p>
-        <div class="proj-tags"><span>Flutter</span><span>AdMob</span></div>
-      </div>
-    </div>
+<h2>Apps in production, not just in a repo</h2>
 
-    <div class="section-head reveal" style="margin-top:56px; margin-bottom:24px;">
-      <span class="tag">// IN PROGRESS</span>
-      <h2 style="font-size:22px;">Currently building — working with SparkTech Agency</h2>
-    </div>
-    <div class="proj-grid">
-      <div class="proj-card reveal">
-        <h3 style="font-size:16px;">Jeebjab</h3>
-        <span class="cat">Parcel Pickup & Drop App</span>
-        <p style="margin-top:10px; margin-bottom:0;">On-demand parcel pickup and drop-off Flutter app with real-time chat and live order tracking.</p>
-      </div>
-      <div class="proj-card reveal">
-        <h3 style="font-size:16px;">Bestkits</h3>
-        <span class="cat">Multi-Vendor E-commerce App</span>
-        <p style="margin-top:10px; margin-bottom:0;">Marketplace app with multiple vendor storefronts and Stripe Connect payouts for seller settlements.</p>
-      </div>
-      <div class="proj-card reveal">
-        <h3 style="font-size:16px;">Courier App</h3>
-        <span class="cat">Parcel Delivery App</span>
-        <p style="margin-top:10px; margin-bottom:0;">Logistics and delivery Flutter app handling assignment, routing, and delivery status updates.</p>
-      </div>
-    </div>
-    <div style="text-align:center; margin-top:36px;">
-      <a href="mailto:lwmsoftltd@gmail.com?subject=Let's%20talk%20about%20a%20project" class="btn btn-ghost">See a project — book a meeting →</a>
-    </div>
-  </div>
+<p>
+Production Flutter applications delivered through real Google Play and Apple App Store release workflows.
+</p>
+
+</div>
+
+
+<div class="proj-grid">
+
+
+<!-- GRAMBIX -->
+
+<div class="proj-card">
+
+<div class="proj-top">
+<div class="proj-icon" style="background:#4C6FFF;">G</div>
+<span class="proj-version">Live</span>
+</div>
+
+<h3>Grambix</h3>
+
+<span class="cat">
+eBooks & Audiobooks
+</span>
+
+<p>
+Full-cycle Flutter application delivered from architecture through production release on Google Play and the App Store.
+</p>
+
+<div class="proj-tags">
+<span>Flutter</span>
+<span>GetX</span>
+<span>Firebase</span>
+</div>
+
+</div>
+
+
+<!-- SITENORM -->
+
+<div class="proj-card">
+
+<div class="proj-top">
+<div class="proj-icon" style="background:#FFB454;">S</div>
+<span class="proj-version">Android & iOS · Live</span>
+</div>
+
+<h3>SiteNorm</h3>
+
+<span class="cat">
+Subscriptions & Location Services
+</span>
+
+<p>
+RevenueCat subscription integration with monthly/yearly plans, location and map features, and complete App Store and Google Play deployment.
+</p>
+
+<div class="proj-tags">
+<span>Flutter</span>
+<span>RevenueCat</span>
+<span>GetX</span>
+<span>Google Maps</span>
+</div>
+
+</div>
+
+
+<!-- BESTKIDS -->
+
+<div class="proj-card">
+
+<div class="proj-top">
+<div class="proj-icon" style="background:#7c9bff;">B</div>
+<span class="proj-version">Android & iOS · Live</span>
+</div>
+
+<h3>BestKids</h3>
+
+<span class="cat">
+Buyer & Seller E-Commerce Application
+</span>
+
+<p>
+Production e-commerce application with dedicated buyer and seller experiences, product management, orders, cart and checkout, returns, notifications, and marketplace workflows.
+</p>
+
+<div class="proj-tags">
+<span>Flutter</span>
+<span>E-Commerce</span>
+<span>Buyer & Seller</span>
+<span>Stripe</span>
+</div>
+
+</div>
+
+
+<!-- JEEBJAB -->
+
+<div class="proj-card">
+
+<div class="proj-top">
+<div class="proj-icon" style="background:#52D17A;">J</div>
+<span class="proj-version">Android & iOS · Live</span>
+</div>
+
+<h3>JeebJab</h3>
+
+<span class="cat">
+Courier Management Application · Arabic Support
+</span>
+
+<p>
+Courier management application with Arabic language support, delivery and task workflows, Google Maps, distance features, notifications, and real-time operational functionality.
+</p>
+
+<div class="proj-tags">
+<span>Flutter</span>
+<span>Courier</span>
+<span>Arabic</span>
+<span>Google Maps</span>
+</div>
+
+</div>
+
+
+<!-- WESTCHESTER -->
+
+<div class="proj-card">
+
+<div class="proj-top">
+<div class="proj-icon" style="background:#FFB454;">W</div>
+<span class="proj-version">Android & iOS · Live</span>
+</div>
+
+<h3>Westchester Courier</h3>
+
+<span class="cat">
+Courier Management Application
+</span>
+
+<p>
+Courier and driver application with Google Maps, route polylines, ETA and distance calculations, live location updates, push notifications, and delivery management workflows.
+</p>
+
+<div class="proj-tags">
+<span>Flutter</span>
+<span>Courier</span>
+<span>Google Maps</span>
+<span>Live Location</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
 </section>
 
-<section id="process">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="tag">// PIPELINE</span>
-      <h2>How a project actually moves</h2>
-      <p>The same sequence every build goes through before it reaches a store listing.</p>
-    </div>
-    <div class="pipeline">
-      <div class="pipe-step reveal">
-        <div class="pipe-num">01</div>
-        <h3>Scope</h3>
-        <p>Define screens, data flow, and which store policies will matter before writing a line of Dart.</p>
-      </div>
-      <div class="pipe-step reveal">
-        <div class="pipe-num">02</div>
-        <h3>Build</h3>
-        <p>Flutter + GetX architecture, Firebase/backend wiring, and monetization set up in parallel, not bolted on later.</p>
-      </div>
-      <div class="pipe-step reveal">
-        <div class="pipe-num">03</div>
-        <h3>Ship</h3>
-        <p>App Store and Play Console submission, metadata, and review-note prep — including the parts most devs skip.</p>
-      </div>
-      <div class="pipe-step reveal">
-        <div class="pipe-num">04</div>
-        <h3>Support</h3>
-        <p>Rejections handled, appeals filed, and fixes turned around fast when policy or platform changes.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
-<section id="youtube">
-  <div class="wrap">
-    <div class="yt-strip reveal">
-      <div class="yt-left">
-        <div class="yt-icon">▶</div>
-        <div>
-          <h3>Learn With Motaleb</h3>
-          <p>A YouTube channel where I teach Flutter, Firebase, RevenueCat, and AdMob the way I actually use them in production — real apps, real store submissions, no fluff. If you're building a mobile app or learning Flutter, this is where I break down the exact patterns used in the projects above.</p>
-        </div>
-        <a href="https://www.youtube.com/channel/UCmgJArk4p2iCFaYz0mMpUcQ" class="btn btn-ghost" target="_blank" rel="noopener">Watch on YouTube →</a>
-      </div>
-      <div class="yt-video">
-        <iframe src="https://www.youtube.com/embed/l0AgSDBZ87M" title="Learn With Motaleb" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- CONTACT -->
 
 <section id="contact">
-  <div class="wrap">
-    <div class="contact-box reveal">
-      <h2>Got an app that needs to ship?</h2>
-      <p>Whether it's a fresh build or getting an existing app past store review, I handle the whole path from Dart to deployment.</p>
-      <div class="contact-actions">
-        <a href="mailto:lwmsoftltd@gmail.com" class="btn btn-primary">Email me</a>
-        <a href="https://www.upwork.com/freelancers/~012953b7fd8ca14a34" class="btn btn-ghost" target="_blank" rel="noopener">Message on Upwork</a>
-      </div>
-      <p style="margin-top:26px; font-size:13px; color:var(--muted);" class="mono">+880 1701 577479 · Uttara, Dhaka-1230, Bangladesh</p>
-    </div>
-  </div>
+<div class="wrap">
+
+<div class="contact-box">
+
+<h2>Got an app that needs to ship?</h2>
+
+<p>
+Whether it's a fresh Flutter build or getting an existing application through App Store and Google Play review, I can handle the complete delivery process.
+</p>
+
+<div class="contact-actions">
+
+<a href="mailto:lwmsoftltd@gmail.com" class="btn btn-primary">
+Email me
+</a>
+
+<a
+href="https://www.upwork.com/freelancers/~012953b7fd8ca14a34"
+class="btn btn-ghost"
+target="_blank">
+Message on Upwork
+</a>
+
+</div>
+
+</div>
+
+</div>
 </section>
 
+
 <footer>
-  <div class="wrap">
-    <div>© 2026 Abdul Motaleb · Learn With Motaleb</div>
-    <div style="display:flex; gap:22px;">
-      <a href="https://github.com/learnwithmotaleb" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://www.linkedin.com/in/learnwithmotaleb/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://www.upwork.com/freelancers/~012953b7fd8ca14a34" target="_blank" rel="noopener">Upwork</a>
-      <a href="https://www.youtube.com/channel/UCmgJArk4p2iCFaYz0mMpUcQ" target="_blank" rel="noopener">YouTube</a>
-    </div>
-  </div>
+
+<div class="wrap">
+
+<div>
+© 2026 Abdul Motaleb · Learn With Motaleb
+</div>
+
+<div>
+GitHub · LinkedIn · Upwork · YouTube
+</div>
+
+</div>
+
 </footer>
 
-<script>
-  // Terminal typing sequence
-  const lines = [
-    { p:'$', t:'flutter build appbundle --release', c:'' },
-    { p:'', t:'Building Grambix... ', c:'ok', suf:'done ✓' },
-    { p:'$', t:'flutter build ipa --release', c:'' },
-    { p:'', t:'Building SiteNorm... ', c:'ok', suf:'done ✓' },
-    { p:'', t:'Configuring RevenueCat entitlements', c:'dim' },
-    { p:'', t:'Uploading to App Store Connect', c:'amber' },
-    { p:'', t:'Uploading to Play Console', c:'amber' },
-    { p:'', t:'Status: ', c:'ok', suf:'2/2 apps live' },
-  ];
-  const termBody = document.getElementById('termBody');
-  let delay = 150;
-  lines.forEach((ln, i) => {
-    const div = document.createElement('div');
-    div.className = 'term-line';
-    div.style.animationDelay = (delay/1000) + 's';
-    let html = '';
-    if(ln.p) html += '<span class="term-prompt">'+ln.p+'</span>';
-    let cls = ln.c === 'ok' ? 'term-ok' : ln.c === 'amber' ? 'term-amber' : ln.c === 'dim' ? 'term-dim' : '';
-    html += '<span class="'+(cls||'')+'">'+ln.t+(ln.suf?'<span class="term-ok">'+ln.suf+'</span>':'')+'</span>';
-    div.innerHTML = html;
-    termBody.appendChild(div);
-    delay += 480;
-  });
-  const cursorDiv = document.createElement('div');
-  cursorDiv.className = 'term-line';
-  cursorDiv.style.animationDelay = (delay/1000)+'s';
-  cursorDiv.innerHTML = '<span class="term-prompt">$</span><span class="cursor"></span>';
-  termBody.appendChild(cursorDiv);
 
-  // Scroll reveal
-  const revealEls = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-    });
-  }, { threshold:0.15 });
-  revealEls.forEach(el=>io.observe(el));
+<script>
+
+/*
+  5 LIVE PROJECTS TERMINAL
+*/
+
+const lines = [
+
+{
+  p:'$',
+  t:'flutter build appbundle --release',
+  c:''
+},
+
+{
+  p:'',
+  t:'Building Grambix... ',
+  c:'ok',
+  suf:'done ✓'
+},
+
+{
+  p:'',
+  t:'Building SiteNorm... ',
+  c:'ok',
+  suf:'done ✓'
+},
+
+{
+  p:'',
+  t:'Building BestKids... ',
+  c:'ok',
+  suf:'done ✓'
+},
+
+{
+  p:'',
+  t:'Building JeebJab... ',
+  c:'ok',
+  suf:'done ✓'
+},
+
+{
+  p:'',
+  t:'Building Westchester Courier... ',
+  c:'ok',
+  suf:'done ✓'
+},
+
+{
+  p:'$',
+  t:'flutter build ipa --release',
+  c:''
+},
+
+{
+  p:'',
+  t:'Uploading Android builds to Play Console',
+  c:'amber'
+},
+
+{
+  p:'',
+  t:'Uploading iOS builds to App Store Connect',
+  c:'amber'
+},
+
+{
+  p:'',
+  t:'Status: ',
+  c:'ok',
+  suf:'5/5 apps live'
+}
+
+];
+
+
+const termBody = document.getElementById('termBody');
+
+let delay = 150;
+
+lines.forEach((ln)=>{
+
+  const div = document.createElement('div');
+
+  div.className = 'term-line';
+
+  div.style.animationDelay =
+  (delay / 1000) + 's';
+
+  let html = '';
+
+  if(ln.p){
+
+    html +=
+    '<span class="term-prompt">' +
+    ln.p +
+    '</span>';
+
+  }
+
+  let cls = '';
+
+  if(ln.c === 'ok')
+    cls = 'term-ok';
+
+  if(ln.c === 'amber')
+    cls = 'term-amber';
+
+  if(ln.c === 'dim')
+    cls = 'term-dim';
+
+
+  html +=
+  '<span class="' +
+  cls +
+  '">' +
+  ln.t;
+
+  if(ln.suf){
+
+    html +=
+    '<span class="term-ok">' +
+    ln.suf +
+    '</span>';
+
+  }
+
+  html += '</span>';
+
+  div.innerHTML = html;
+
+  termBody.appendChild(div);
+
+  delay += 420;
+
+});
+
+
+const cursorDiv =
+document.createElement('div');
+
+cursorDiv.className =
+'term-line';
+
+cursorDiv.style.animationDelay =
+(delay / 1000) + 's';
+
+cursorDiv.innerHTML =
+'<span class="term-prompt">$</span>' +
+'<span class="cursor"></span>';
+
+termBody.appendChild(cursorDiv);
+
 </script>
 
 </body>
